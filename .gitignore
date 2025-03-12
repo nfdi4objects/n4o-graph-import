@@ -8,6 +8,7 @@ stage-voc/*
 !stage-voc/README.md
 
 sources/
+fuseki/
 
 lido-schema/
 terminologies/

@@ -32,7 +32,7 @@ Eventually this is an ETL process (extract, transform, load). See directory [inb
 
 ### System requirements
 
-Requires an **RDF Triple store**, accessible via SPARQL Update and SPARQL Graph Store HTTP protocol.
+Requires an **RDF triple store**, accessible via SPARQL Update and SPARQL Graph Store HTTP protocol. The triple store must further be configured to use the union of all named graphs as default graph. See [n4o-fuseki](https://github.com/nfdi4objects/n4o-fuseki) for a Fuseki triple store configured as needed.
 
 Requires access to the lists of collections and vocabularies.
 
@@ -81,12 +81,6 @@ Zusätzliche Abhängigkeiten werden anschließend mit `make update` installiert.
 - Benötigte Node-Pakete (`npm install`)
 - Die Liste von Datenquellen aus [n4o-databases]
 - Das LIDO-Schema aus [lido-schema](https://github.com/nfdi4objects/lido-schema/)
-
-Schließlich müssen als Backend ein lokaler Triple-Store und eine Property-Graph-Datenbank (bislang unterstützt: Neo4J) vorhanden sein. In Fuseki muss der Default-Graph mit folgender Einstellung in `/etc/fuseki/configuration/n4o-rdf-import.ttl` als Union-Graph konfiguriert werden:
-
-~~~
-:tdb_dataset_readwrite tdb2:unionDefaultGraph true;
-~~~
 
 ### Datenannahme und Prüfung
 

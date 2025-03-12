@@ -1,0 +1,42 @@
+# Try with:
+#
+# docker compose up --force-recreate -V
+
+version: '3.0'
+services:
+  fuseki:
+    image: ghcr.io/nfdi4objects/n4o-fuseki:main
+    ports:
+      - "3031:3030"
+    volumes:
+      - ./fuseki/logs:/fuseki/logs
+      - ./fuseki/databases:/fuseki/databases
+    #  - ./fuseki/log4j2.properties:/fuseki/log4j2.properties:ro
+    networks:
+      - n4onetwork
+    restart: always
+    healthcheck:
+      test: ["CMD", "wget", "--post-data", "query=DESCRIBE <>", "http://localhost:3030/n4o", "-O", "/dev/null"]
+      # Less frequent health check requires Docker >= 25.0.0
+      # start_interval: 1s
+      # start_period: 0s    # directly check on startup
+      # interval: 1m        # then check every minute
+      interval: 2s        # check after 2s, then every 2s
+      timeout: 2s
+
+  graph-apis:
+    image: ghcr.io/nfdi4objects/n4o-graph-apis:main
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api-config.yaml:/app/config.yaml:ro
+      - ./stage:/app/stage:ro
+    networks:
+      - n4onetwork
+    depends_on:
+      fuseki: 
+        condition: service_healthy
+
+networks:
+  n4onetwork:
+    driver: bridge
