@@ -1,5 +1,7 @@
 # n4o-graph-import
 
+**This is currently being rewritten into <https://github.com/nfdi4objects/n4o-graph-importer>***
+
 [![License](https://img.shields.io/github/license/nfdi4objects/n4o-graph-import.svg)](https://github.com/nfdi4objects/n4o-graph-import/blob/master/LICENSE)
 
 > Import into the NFDI4Objects Knowledge Graph (N4O KG)
