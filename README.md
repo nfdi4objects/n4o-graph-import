@@ -180,37 +180,6 @@ Neben der RDF-Kodierung sollen die Daten oder Teile davon in einen Property-Grap
 
 *Noch in Arbeit*
 
-### Import von Vokabularen
-
-Abrufen von Informationen *über* die für N4O relevanten Vokabulare:
-
-~~~sh
-make terminologies
-~~~
-
-Aktualisieren des Graph <https://graph.nfdi4objects.net/terminology/> mit den Angaben über die für N4O relevanten Vokabulare im Triple Store:
-
-~~~sh
-./load-terminologies-metadata
-~~~
-
-#### Vokabulare in JSKOS oder RDF
-
-Zum Import eines ausgewählten Vokabulars dient das Skript `load-terminology`. Dabei müssen eine BARTOC-URI und eine URL zum Herunterladen des Vokabulars in RDF oder eine lokale RDF-Datei angegeben werden. Optional kann zusätzlich das RDF-Format angegeben werden wenn es sich nicht aus der URL ergibt. Unterstützt werden N-Triples (`nt`), Turtle (`ttl`), RDF/XML (`xml` oder `rdf`) und JSKOS als JSON-LD (`ndjson` oder `jskos`). Beispiel:
-
-~~~sh
-./load-terminology http://bartoc.org/en/node/18274 crm-rdf-ap/skos.rdf
-./load-terminology http://bartoc.org/en/node/1644 crm-rdf-ap/cidoc-crm.rdf
-./load-terminology http://bartoc.org/en/node/1683 https://n2t.net/ark:/99152/p0dataset.ttl
-./load-terminology http://bartoc.org/en/node/1048 'https://vocabs.acdh.oeaw.ac.at/rest/v1/hsinstruments_thesaurus/data?format=text/turtle' ttl
-./load-terminology http://bartoc.org/en/node/20533 https://api.dante.gbv.de/export/download/kenom_material/def
-ault/kenom_material__default.jskos.ndjson
-~~~
-
-Das Skript führt den gesamte ETL-Prozess mit staging area in [stage-voc](stage-voc) aus. 
-
-*Eine semantische Prüfung von Vokabulardaten findet bislang nicht statt, d.h. Vokabulardaten werden so eingespielt wie sie sind!*
-
 #### Wikidata
 
 Im Verzeichnis `wikidata` werden RDF-Daten aus Wikidata vorgehalten und können mit `load-wikidata` in den Triple-Store geladen werden.

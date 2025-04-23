@@ -1,5 +1,0 @@
-#!/usr/bin/bash
-set -euo pipefail
-
-echo "Loading N4O Terminologies Metadata into the Knowledge Graph"
-./load-rdf-graph https://graph.nfdi4objects.net/terminology/ terminologies.nt
