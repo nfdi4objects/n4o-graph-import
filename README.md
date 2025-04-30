@@ -64,26 +64,6 @@ Knowledge Graphen eingespielt.
 [n4o-databases]: https://github.com/nfdi4objects/n4o-databases/
 [n4o-terminologies]: https://github.com/nfdi4objects/n4o-terminologies/
 
-## Installation
-
-~~~sh
-git clone https://github.com/nfdi4objects/n4o-import.git && cd n4o-import
-~~~
-
-Benötigt werden Standard-Kommandozeilenwerkzeuge (git, grep...) sowie rapper, xmllint, xmlstarlet, jq und Python 3. Unter Ubuntu lassen sie sich folgendermaßen installieren:
-
-~~~
-sudo apt-get install raptor2-utils libxml2-utils xmlstarlet jq python3
-~~~
-
-Darüber hinaus muss Node mindestens in Version 18, besser 20 installiert sein (Empfehlung zur Installation: [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)).
-
-Zusätzliche Abhängigkeiten werden anschließend mit `make update` installiert. Dies beinhaltet:
-
-- Benötigte Node-Pakete (`npm install`)
-- Die Liste von Datenquellen aus [n4o-databases]
-- Das LIDO-Schema aus [lido-schema](https://github.com/nfdi4objects/lido-schema/)
-
 ### Datenannahme und Prüfung
 
 Die **Datenannahme und Prüfung** beinhaltet:
@@ -151,30 +131,6 @@ The result is three files:
 ### Import von Forschungsdaten
 
 Das Einspielen der bereinigten RDF-Daten als Named Graph in einen lokalen Fuseki RDF-Triple-Store bzw. das Konvertieren der LIDO-XML-Daten zur Einspielung in den gemeinsamen Knowledge Graphen erfolgt mit folgenden Skripten.
-
-#### Einspielen von RDF-Daten in den Triple-Store
-
-Mit dem Skript `load-rdf` können Sammlungen und Informationen über Sammlungen
-(sources) in einen lokalen RDF-Triple-Store (Fuseki) geladen werden, wobei die
-vorhandenen RDF-Daten der Sammlung jeweils überschrieben werden. Beispiel:
-
-~~~sh
-./load-rdf 4
-~~~
-
-Vor dem Einspielen der RDF-Daten in einen Graphen mit der jeweiligen Sammlungs-URI (hier <https://graph.nfdi4objects.net/collection/4>) wird der Graph 
-<https://graph.nfdi4objects.net/collection/> mit Verwaltungsdaten _über_ die Sammlungen aktualisiert.
-Diese Metadaten können auch folgendermaßen unabhängig von den eigentlichen Forschungsdaten aktualisiert werden:
-
-~~~sh
-./load-rdf-metadata 4
-~~~
-
-Zum Löschen von Graphen kann die Fuseki-Weboberfläche mit dem `update` Endpunkt und dem Kommando `DROP GRAPH <...>` verwendet werden, allerdings wird der Graph mit den Verwaltungsdaten dabei nicht aktualisiert!
-
-#### Einspielen von RDF-Daten in den Property-Graphen
-
-Neben der RDF-Kodierung sollen die Daten oder Teile davon in einen Property-Graphen überführt und dort mit anderen Daten zusammengeführt werden. Siehe dazu das Code-Repository <https://github.com/nfdi4objects/n4o-property-graph/>.
 
 #### Einspielen von LIDO-Daten
 

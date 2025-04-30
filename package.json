@@ -4,7 +4,6 @@
   "scripts": {
     "rdffilter": "rdffilter",
     "jsonld2rdf": "jsonld2rdf",
-    "lint": "eslint --fix '*.js'"
   },
   "dependencies": {
     "csv-parse": "^5.5.6",
